@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ArchitectureRouteImport } from './routes/architecture'
+import { Route as AssetsRouteImport } from './routes/assets'
+import { Route as CorrelationRouteImport } from './routes/correlation'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as PipelineRouteImport } from './routes/pipeline'
 
@@ -22,6 +24,16 @@ const IndexRoute = IndexRouteImport.update({
 const ArchitectureRoute = ArchitectureRouteImport.update({
   id: '/architecture',
   path: '/architecture',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AssetsRoute = AssetsRouteImport.update({
+  id: '/assets',
+  path: '/assets',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CorrelationRoute = CorrelationRouteImport.update({
+  id: '/correlation',
+  path: '/correlation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HowItWorksRoute = HowItWorksRouteImport.update({
@@ -38,12 +50,16 @@ const PipelineRoute = PipelineRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/architecture': typeof ArchitectureRoute
+  '/assets': typeof AssetsRoute
+  '/correlation': typeof CorrelationRoute
   '/how-it-works': typeof HowItWorksRoute
   '/pipeline': typeof PipelineRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/architecture': typeof ArchitectureRoute
+  '/assets': typeof AssetsRoute
+  '/correlation': typeof CorrelationRoute
   '/how-it-works': typeof HowItWorksRoute
   '/pipeline': typeof PipelineRoute
 }
@@ -51,20 +67,43 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/architecture': typeof ArchitectureRoute
+  '/assets': typeof AssetsRoute
+  '/correlation': typeof CorrelationRoute
   '/how-it-works': typeof HowItWorksRoute
   '/pipeline': typeof PipelineRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/architecture' | '/how-it-works' | '/pipeline'
+  fullPaths:
+    | '/'
+    | '/architecture'
+    | '/assets'
+    | '/correlation'
+    | '/how-it-works'
+    | '/pipeline'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/architecture' | '/how-it-works' | '/pipeline'
-  id: '__root__' | '/' | '/architecture' | '/how-it-works' | '/pipeline'
+  to:
+    | '/'
+    | '/architecture'
+    | '/assets'
+    | '/correlation'
+    | '/how-it-works'
+    | '/pipeline'
+  id:
+    | '__root__'
+    | '/'
+    | '/architecture'
+    | '/assets'
+    | '/correlation'
+    | '/how-it-works'
+    | '/pipeline'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArchitectureRoute: typeof ArchitectureRoute
+  AssetsRoute: typeof AssetsRoute
+  CorrelationRoute: typeof CorrelationRoute
   HowItWorksRoute: typeof HowItWorksRoute
   PipelineRoute: typeof PipelineRoute
 }
@@ -83,6 +122,20 @@ declare module '@tanstack/react-router' {
       path: '/architecture'
       fullPath: '/architecture'
       preLoaderRoute: typeof ArchitectureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/assets': {
+      id: '/assets'
+      path: '/assets'
+      fullPath: '/assets'
+      preLoaderRoute: typeof AssetsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/correlation': {
+      id: '/correlation'
+      path: '/correlation'
+      fullPath: '/correlation'
+      preLoaderRoute: typeof CorrelationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/how-it-works': {
@@ -105,6 +158,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArchitectureRoute: ArchitectureRoute,
+  AssetsRoute: AssetsRoute,
+  CorrelationRoute: CorrelationRoute,
   HowItWorksRoute: HowItWorksRoute,
   PipelineRoute: PipelineRoute,
 }

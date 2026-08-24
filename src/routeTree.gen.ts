@@ -17,6 +17,8 @@ import { Route as DriversRouteImport } from './routes/drivers'
 import { Route as FinancialRouteImport } from './routes/financial'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as PipelineRouteImport } from './routes/pipeline'
+import { Route as RecommendationsRouteImport } from './routes/recommendations'
+import { Route as ScenariosRouteImport } from './routes/scenarios'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,6 +60,16 @@ const PipelineRoute = PipelineRouteImport.update({
   path: '/pipeline',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RecommendationsRoute = RecommendationsRouteImport.update({
+  id: '/recommendations',
+  path: '/recommendations',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScenariosRoute = ScenariosRouteImport.update({
+  id: '/scenarios',
+  path: '/scenarios',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +80,8 @@ export interface FileRoutesByFullPath {
   '/financial': typeof FinancialRoute
   '/how-it-works': typeof HowItWorksRoute
   '/pipeline': typeof PipelineRoute
+  '/recommendations': typeof RecommendationsRoute
+  '/scenarios': typeof ScenariosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +92,8 @@ export interface FileRoutesByTo {
   '/financial': typeof FinancialRoute
   '/how-it-works': typeof HowItWorksRoute
   '/pipeline': typeof PipelineRoute
+  '/recommendations': typeof RecommendationsRoute
+  '/scenarios': typeof ScenariosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +105,8 @@ export interface FileRoutesById {
   '/financial': typeof FinancialRoute
   '/how-it-works': typeof HowItWorksRoute
   '/pipeline': typeof PipelineRoute
+  '/recommendations': typeof RecommendationsRoute
+  '/scenarios': typeof ScenariosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +119,8 @@ export interface FileRouteTypes {
     | '/financial'
     | '/how-it-works'
     | '/pipeline'
+    | '/recommendations'
+    | '/scenarios'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +131,8 @@ export interface FileRouteTypes {
     | '/financial'
     | '/how-it-works'
     | '/pipeline'
+    | '/recommendations'
+    | '/scenarios'
   id:
     | '__root__'
     | '/'
@@ -121,6 +143,8 @@ export interface FileRouteTypes {
     | '/financial'
     | '/how-it-works'
     | '/pipeline'
+    | '/recommendations'
+    | '/scenarios'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +156,8 @@ export interface RootRouteChildren {
   FinancialRoute: typeof FinancialRoute
   HowItWorksRoute: typeof HowItWorksRoute
   PipelineRoute: typeof PipelineRoute
+  RecommendationsRoute: typeof RecommendationsRoute
+  ScenariosRoute: typeof ScenariosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -192,6 +218,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PipelineRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/recommendations': {
+      id: '/recommendations'
+      path: '/recommendations'
+      fullPath: '/recommendations'
+      preLoaderRoute: typeof RecommendationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scenarios': {
+      id: '/scenarios'
+      path: '/scenarios'
+      fullPath: '/scenarios'
+      preLoaderRoute: typeof ScenariosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -204,6 +244,8 @@ const rootRouteChildren: RootRouteChildren = {
   FinancialRoute: FinancialRoute,
   HowItWorksRoute: HowItWorksRoute,
   PipelineRoute: PipelineRoute,
+  RecommendationsRoute: RecommendationsRoute,
+  ScenariosRoute: ScenariosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

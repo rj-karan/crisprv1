@@ -10,11 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdvisorRouteImport } from './routes/advisor'
 import { Route as ArchitectureRouteImport } from './routes/architecture'
 import { Route as AssetsRouteImport } from './routes/assets'
 import { Route as BudgetRouteImport } from './routes/budget'
 import { Route as ComplianceRouteImport } from './routes/compliance'
 import { Route as CorrelationRouteImport } from './routes/correlation'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as DriversRouteImport } from './routes/drivers'
 import { Route as FinancialRouteImport } from './routes/financial'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
@@ -25,6 +27,11 @@ import { Route as ScenariosRouteImport } from './routes/scenarios'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdvisorRoute = AdvisorRouteImport.update({
+  id: '/advisor',
+  path: '/advisor',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ArchitectureRoute = ArchitectureRouteImport.update({
@@ -50,6 +57,11 @@ const ComplianceRoute = ComplianceRouteImport.update({
 const CorrelationRoute = CorrelationRouteImport.update({
   id: '/correlation',
   path: '/correlation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DriversRoute = DriversRouteImport.update({
@@ -85,11 +97,13 @@ const ScenariosRoute = ScenariosRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/advisor': typeof AdvisorRoute
   '/architecture': typeof ArchitectureRoute
   '/assets': typeof AssetsRoute
   '/budget': typeof BudgetRoute
   '/compliance': typeof ComplianceRoute
   '/correlation': typeof CorrelationRoute
+  '/dashboard': typeof DashboardRoute
   '/drivers': typeof DriversRoute
   '/financial': typeof FinancialRoute
   '/how-it-works': typeof HowItWorksRoute
@@ -99,11 +113,13 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/advisor': typeof AdvisorRoute
   '/architecture': typeof ArchitectureRoute
   '/assets': typeof AssetsRoute
   '/budget': typeof BudgetRoute
   '/compliance': typeof ComplianceRoute
   '/correlation': typeof CorrelationRoute
+  '/dashboard': typeof DashboardRoute
   '/drivers': typeof DriversRoute
   '/financial': typeof FinancialRoute
   '/how-it-works': typeof HowItWorksRoute
@@ -114,11 +130,13 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/advisor': typeof AdvisorRoute
   '/architecture': typeof ArchitectureRoute
   '/assets': typeof AssetsRoute
   '/budget': typeof BudgetRoute
   '/compliance': typeof ComplianceRoute
   '/correlation': typeof CorrelationRoute
+  '/dashboard': typeof DashboardRoute
   '/drivers': typeof DriversRoute
   '/financial': typeof FinancialRoute
   '/how-it-works': typeof HowItWorksRoute
@@ -130,11 +148,13 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/advisor'
     | '/architecture'
     | '/assets'
     | '/budget'
     | '/compliance'
     | '/correlation'
+    | '/dashboard'
     | '/drivers'
     | '/financial'
     | '/how-it-works'
@@ -144,11 +164,13 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/advisor'
     | '/architecture'
     | '/assets'
     | '/budget'
     | '/compliance'
     | '/correlation'
+    | '/dashboard'
     | '/drivers'
     | '/financial'
     | '/how-it-works'
@@ -158,11 +180,13 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/advisor'
     | '/architecture'
     | '/assets'
     | '/budget'
     | '/compliance'
     | '/correlation'
+    | '/dashboard'
     | '/drivers'
     | '/financial'
     | '/how-it-works'
@@ -173,11 +197,13 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdvisorRoute: typeof AdvisorRoute
   ArchitectureRoute: typeof ArchitectureRoute
   AssetsRoute: typeof AssetsRoute
   BudgetRoute: typeof BudgetRoute
   ComplianceRoute: typeof ComplianceRoute
   CorrelationRoute: typeof CorrelationRoute
+  DashboardRoute: typeof DashboardRoute
   DriversRoute: typeof DriversRoute
   FinancialRoute: typeof FinancialRoute
   HowItWorksRoute: typeof HowItWorksRoute
@@ -193,6 +219,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/advisor': {
+      id: '/advisor'
+      path: '/advisor'
+      fullPath: '/advisor'
+      preLoaderRoute: typeof AdvisorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/architecture': {
@@ -228,6 +261,13 @@ declare module '@tanstack/react-router' {
       path: '/correlation'
       fullPath: '/correlation'
       preLoaderRoute: typeof CorrelationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/drivers': {
@@ -277,11 +317,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdvisorRoute: AdvisorRoute,
   ArchitectureRoute: ArchitectureRoute,
   AssetsRoute: AssetsRoute,
   BudgetRoute: BudgetRoute,
   ComplianceRoute: ComplianceRoute,
   CorrelationRoute: CorrelationRoute,
+  DashboardRoute: DashboardRoute,
   DriversRoute: DriversRoute,
   FinancialRoute: FinancialRoute,
   HowItWorksRoute: HowItWorksRoute,

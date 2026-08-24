@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Page, Panel } from "@/components/crispr/shell";
-import { AnimatedNumber } from "@/components/crispr/animated-number";
+import { ScoreDial } from "@/components/crispr/score-dial";
 import { RISK_CASE } from "@/lib/crispr-data";
 
 export const Route = createFileRoute("/drivers")({
@@ -77,34 +77,5 @@ function Drivers() {
         </Panel>
       </div>
     </Page>
-  );
-}
-
-export function ScoreDial({ score }: { score: number }) {
-  const r = 78;
-  const circ = Math.PI * r;
-  return (
-    <div className="relative h-[130px] w-[200px]">
-      <svg viewBox="0 0 200 110" className="h-full w-full">
-        <path d={`M 20 100 A ${r} ${r} 0 0 1 180 100`} fill="none" stroke="var(--secondary)" strokeWidth={14} strokeLinecap="round" />
-        <motion.path
-          d={`M 20 100 A ${r} ${r} 0 0 1 180 100`}
-          fill="none"
-          stroke="var(--critical)"
-          strokeWidth={14}
-          strokeLinecap="round"
-          strokeDasharray={circ}
-          initial={{ strokeDashoffset: circ }}
-          whileInView={{ strokeDashoffset: circ - (circ * score) / 100 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-        />
-      </svg>
-      <div className="absolute inset-x-0 bottom-1 text-center">
-        <span className="font-display text-4xl">
-          <AnimatedNumber value={score} duration={1.4} />
-        </span>
-      </div>
-    </div>
   );
 }

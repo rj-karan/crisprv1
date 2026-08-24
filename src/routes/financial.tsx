@@ -14,7 +14,7 @@ export const Route = createFileRoute("/financial")({
       { property: "og:description", content: "₹3.8 Cr potential impact · ₹79.8 L expected annual loss." },
     ],
   }),
-  component: Financial;
+  component: Financial,
 });
 
 function Financial() {

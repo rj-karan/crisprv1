@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ArchitectureRouteImport } from './routes/architecture'
 import { Route as AssetsRouteImport } from './routes/assets'
+import { Route as BudgetRouteImport } from './routes/budget'
+import { Route as ComplianceRouteImport } from './routes/compliance'
 import { Route as CorrelationRouteImport } from './routes/correlation'
 import { Route as DriversRouteImport } from './routes/drivers'
 import { Route as FinancialRouteImport } from './routes/financial'
@@ -33,6 +35,16 @@ const ArchitectureRoute = ArchitectureRouteImport.update({
 const AssetsRoute = AssetsRouteImport.update({
   id: '/assets',
   path: '/assets',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BudgetRoute = BudgetRouteImport.update({
+  id: '/budget',
+  path: '/budget',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComplianceRoute = ComplianceRouteImport.update({
+  id: '/compliance',
+  path: '/compliance',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CorrelationRoute = CorrelationRouteImport.update({
@@ -75,6 +87,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/architecture': typeof ArchitectureRoute
   '/assets': typeof AssetsRoute
+  '/budget': typeof BudgetRoute
+  '/compliance': typeof ComplianceRoute
   '/correlation': typeof CorrelationRoute
   '/drivers': typeof DriversRoute
   '/financial': typeof FinancialRoute
@@ -87,6 +101,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/architecture': typeof ArchitectureRoute
   '/assets': typeof AssetsRoute
+  '/budget': typeof BudgetRoute
+  '/compliance': typeof ComplianceRoute
   '/correlation': typeof CorrelationRoute
   '/drivers': typeof DriversRoute
   '/financial': typeof FinancialRoute
@@ -100,6 +116,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/architecture': typeof ArchitectureRoute
   '/assets': typeof AssetsRoute
+  '/budget': typeof BudgetRoute
+  '/compliance': typeof ComplianceRoute
   '/correlation': typeof CorrelationRoute
   '/drivers': typeof DriversRoute
   '/financial': typeof FinancialRoute
@@ -114,6 +132,8 @@ export interface FileRouteTypes {
     | '/'
     | '/architecture'
     | '/assets'
+    | '/budget'
+    | '/compliance'
     | '/correlation'
     | '/drivers'
     | '/financial'
@@ -126,6 +146,8 @@ export interface FileRouteTypes {
     | '/'
     | '/architecture'
     | '/assets'
+    | '/budget'
+    | '/compliance'
     | '/correlation'
     | '/drivers'
     | '/financial'
@@ -138,6 +160,8 @@ export interface FileRouteTypes {
     | '/'
     | '/architecture'
     | '/assets'
+    | '/budget'
+    | '/compliance'
     | '/correlation'
     | '/drivers'
     | '/financial'
@@ -151,6 +175,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArchitectureRoute: typeof ArchitectureRoute
   AssetsRoute: typeof AssetsRoute
+  BudgetRoute: typeof BudgetRoute
+  ComplianceRoute: typeof ComplianceRoute
   CorrelationRoute: typeof CorrelationRoute
   DriversRoute: typeof DriversRoute
   FinancialRoute: typeof FinancialRoute
@@ -181,6 +207,20 @@ declare module '@tanstack/react-router' {
       path: '/assets'
       fullPath: '/assets'
       preLoaderRoute: typeof AssetsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/budget': {
+      id: '/budget'
+      path: '/budget'
+      fullPath: '/budget'
+      preLoaderRoute: typeof BudgetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/compliance': {
+      id: '/compliance'
+      path: '/compliance'
+      fullPath: '/compliance'
+      preLoaderRoute: typeof ComplianceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/correlation': {
@@ -239,6 +279,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArchitectureRoute: ArchitectureRoute,
   AssetsRoute: AssetsRoute,
+  BudgetRoute: BudgetRoute,
+  ComplianceRoute: ComplianceRoute,
   CorrelationRoute: CorrelationRoute,
   DriversRoute: DriversRoute,
   FinancialRoute: FinancialRoute,

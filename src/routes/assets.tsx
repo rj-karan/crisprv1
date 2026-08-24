@@ -19,7 +19,7 @@ export const Route = createFileRoute("/assets")({
 
 function Assets() {
   const [selected, setSelected] = useState("payment");
-  const ctx = ASSET_CONTEXT[selected];
+  const ctx = ASSET_CONTEXT[selected]!;
   const node = ASSET_GRAPH.nodes.find((n) => n.id === selected)!;
 
   return (

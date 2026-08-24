@@ -19,7 +19,7 @@ export const Route = createFileRoute("/recommendations")({
 });
 
 function Recommendations() {
-  const [id, setId] = useState(RECOMMENDATIONS[0].id);
+  const [id, setId] = useState<string>(RECOMMENDATIONS[0]!.id);
   const rec = RECOMMENDATIONS.find((r) => r.id === id)!;
   const reduction = +(RISK_CASE.ealLakh - rec.projectedEalLakh).toFixed(1);
 

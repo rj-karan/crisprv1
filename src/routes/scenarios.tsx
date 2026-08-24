@@ -23,7 +23,7 @@ export const Route = createFileRoute("/scenarios")({
 type Inputs = { mfa: boolean; patch: boolean; segment: boolean; edr: number; delay: number };
 
 function compute({ mfa, patch, segment, edr, delay }: Inputs) {
-  let score = RISK_CASE.score;
+  let score: number = RISK_CASE.score;
   if (mfa) score -= 21;
   if (patch) score -= 12;
   if (segment) score -= 6;
@@ -68,7 +68,7 @@ function Scenarios() {
                 <span>EDR coverage</span>
                 <span className="font-mono">{inputs.edr}%</span>
               </div>
-              <Slider className="mt-3" min={60} max={100} step={5} value={[inputs.edr]} onValueChange={([v]) => setInputs((s) => ({ ...s, edr: v }))} />
+              <Slider className="mt-3" min={60} max={100} step={5} value={[inputs.edr]} onValueChange={([v]) => setInputs((s) => ({ ...s, edr: v ?? s.edr }))} />
             </div>
 
             <div>
@@ -76,7 +76,7 @@ function Scenarios() {
                 <span>Patch delay</span>
                 <span className="font-mono">{inputs.delay} days</span>
               </div>
-              <Slider className="mt-3" min={0} max={30} step={1} value={[inputs.delay]} onValueChange={([v]) => setInputs((s) => ({ ...s, delay: v }))} />
+              <Slider className="mt-3" min={0} max={30} step={1} value={[inputs.delay]} onValueChange={([v]) => setInputs((s) => ({ ...s, delay: v ?? s.delay }))} />
             </div>
 
             <button

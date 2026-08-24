@@ -22,7 +22,7 @@ const BUDGET_LAKH = 100;
 
 function optimise(budget: number) {
   const ranked = [...BUDGET_CONTROLS].sort((a, b) => b.reductionCrore / b.costLakh - a.reductionCrore / a.costLakh);
-  const picked: typeof BUDGET_CONTROLS[number][] = [];
+  const picked: (typeof BUDGET_CONTROLS)[number][] = [];
   let spend = 0;
   for (const c of ranked) {
     if (spend + c.costLakh <= budget) {

@@ -25,7 +25,7 @@ function Advisor() {
   const [thinking, setThinking] = useState(false);
 
   const ask = (i: number) => {
-    const qa = ADVISOR_QA[i];
+    const qa = ADVISOR_QA[i]!;
     setTurns((t) => [...t, { role: "user", text: qa.q }]);
     setThinking(true);
     setTimeout(() => {

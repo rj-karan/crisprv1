@@ -48,8 +48,8 @@ function Architecture() {
             {SOURCES.map((s, i) => (
               <g key={s.id}>
                 <line
-                  x1={POS[i].x + 4}
-                  y1={POS[i].y + 3}
+                  x1={POS[i]!.x + 4}
+                  y1={POS[i]!.y + 3}
                   x2={68}
                   y2={48}
                   stroke="var(--grid)"
@@ -57,8 +57,8 @@ function Architecture() {
                   vectorEffect="non-scaling-stroke"
                 />
                 <line
-                  x1={POS[i].x + 4}
-                  y1={POS[i].y + 3}
+                  x1={POS[i]!.x + 4}
+                  y1={POS[i]!.y + 3}
                   x2={68}
                   y2={48}
                   stroke="var(--cyan)"
@@ -80,7 +80,7 @@ function Architecture() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: i * 0.06 }}
-              style={{ left: `${POS[i].x}%`, top: `${POS[i].y}%` }}
+              style={{ left: `${POS[i]!.x}%`, top: `${POS[i]!.y}%` }}
               className={cn(
                 "absolute w-[136px] rounded-lg border bg-surface/85 px-3 py-2 text-left text-[12px] backdrop-blur transition-all animate-float",
                 active === s.id ? "border-primary glow-ring" : "border-border hover:border-accent",
